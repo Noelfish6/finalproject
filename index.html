@@ -1,45 +1,63 @@
 <!doctype HTML>
 <html>
 	<head>
-		<title></title>
+		<title id=title>Living in Boston</title>
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     	<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     	<link href="style.css" rel="stylesheet"/>
+    	<script src="day20_assets/ma_towns.json"></script>
 	</head>
 	<body>
 		<div class="viz-container">
-			<div class="canvas" id="plot"></div>
-		</div><!--this element will stay fixed-->
 
+			<div class="canvas" id="plot">
+			</div>
+
+		</div><!--this element will stay fixed-->
+		
+		<div class=title>
+            <h1>Renting in Boston</h1>
+            <p>the relation between renting prices and reviews</p>
+        </div>
+		
 		<div class="animation-timeline"><!--this element will scroll, triggering scroll-based animation-->
 			<section class="scene" id="scene-1"></section>
 			<section class="scene" id="scene-2">
 				<div class="scene-commentary">
-					<h3>Some optional text here</h3>
+					<h3 class>Prices</h3>
 					<p>Background of visualization will turn green when the scene is triggered</p>
 					<p>Opportunity to explain what people are seeing</p>
 				</div>
 			</section>
 			<section class="scene" id="scene-3">
 				<div class="scene-commentary">
-					<h3>More text here</h3>
+					<h3>Reviews</h3>
 					<p>Background of visualization will turn blue when the scene is triggered</p>
 				</div>
 			</section>
 			<section class="scene scene-continuous" id="scene-4">
 				<div class="scene-commentary">
-					<h3>This particular scene changes the visualization on a continuous basis, based on current scroll position</h3>
+					<h3>The relationship between prices and reviews</h3>
 					<p>Ball will roll across the page.</p>
 				</div>
 			</section>
 			<section class="scene"></section><!--just a padder-->
+				<div class="custom-tooltio">
+					<p class="title"></p>
+					<p class="value"></p>
+				</div>
 		</div>
 	</body>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="d3.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3-queue.v3.min.js"></script>
 	<script src="lib/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"></script>
+	<script src="lib/scrollmagic/addIndicators.js"></script>
 	<script src="script.js"></script>
+	<script src="map.js"></script>
+
 </html>
