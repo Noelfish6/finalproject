@@ -134,6 +134,7 @@ function draw(data, slideNumber) {
     switch (slideNumber) {
         case 1:
         d3.select('.map').selectAll('path').style('opacity', .7)
+        d3.selectAll('axis').remove()
             var x = plot.selectAll(".case")
                     .data(data, function(d){return d.roomId});
                     x.exit().remove();
@@ -165,6 +166,7 @@ function draw(data, slideNumber) {
 
         case 2:
             d3.select('.map').selectAll('path').style('opacity', .7)
+            d3.selectAll('axis').remove()
             var x = plot.selectAll(".case")
                 .data(data, function(d){return d.roomId});
                 x.exit().remove();
@@ -221,7 +223,7 @@ function draw(data, slideNumber) {
                 .scale(scaleY)
                 .tickSize(-width);
             plot.append('g').attr('class','axis axis-x')
-                .attr('transform','translate(20,'+height+180+')')
+                .attr('transform','translate(60,'+(height+180)+')')
                 //.attr('trasnform','translate(200,0)')
                 .call(axisX);
             plot.append('g').attr('class','axis axis-y')
