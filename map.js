@@ -134,7 +134,7 @@ function draw(data, slideNumber) {
     switch (slideNumber) {
         case 1:
         d3.select('.map').selectAll('path').style('opacity', .7)
-        d3.selectAll('axis').remove()
+        d3.selectAll('.axis').remove()
             var x = plot.selectAll(".case")
                     .data(data, function(d){return d.roomId});
                     x.exit().remove();
@@ -166,7 +166,7 @@ function draw(data, slideNumber) {
 
         case 2:
             d3.select('.map').selectAll('path').style('opacity', .7)
-            d3.selectAll('axis').remove()
+            d3.selectAll('.axis').remove()
             var x = plot.selectAll(".case")
                 .data(data, function(d){return d.roomId});
                 x.exit().remove();
@@ -211,7 +211,7 @@ function draw(data, slideNumber) {
 
                     })
                     .transition().duration(2000)
-                    .attr('r', 3)
+                    .attr('r', function(d){return d.reviews})
                     .attr('cx',function(d){return scalePrice(d.price)+20})
                     .attr('cy',function(d){return scaleReviews(d.reviews)+180})
                     .style('fill','#7B90D2');
@@ -238,7 +238,6 @@ function draw(data, slideNumber) {
 
 //circle size cannot reflect the amounts of reviews
 
-//how to delete the scale when scene is 1 or 2
         
             break;
     }
