@@ -82,7 +82,7 @@ d3.queue()
         }));
 
         scaleRadius.domain(d3.extent(data, function(d){
-            return d.price
+            return d.reviews
         }));
 
 //another scale
@@ -199,6 +199,30 @@ function draw(data, slideNumber) {
                     x.exit().remove();
                     x.enter()
                     .append("circle").attr('class','case')
+                    .on('mouseenter', function(d,i){
+                       var tooltip = d3.select('.custom-tooltip');
+
+                        tooltip.select('.title').html(d.town);
+                        tooltip.select('.value').html(d.price);
+                        tooltip.transition().style('opacity', 1);
+                    })
+
+                    .on('mousemove', function(d,i){
+
+                        var xy = d3.mouse( d3.select('.container').node()); //finding the mouse in relation to container(0,0)
+                        console.log(xy);
+                        
+                        d3.select('.custom-tooltip')
+                            .style('left', xy[0]+10+'px')
+                            .style('top', xy[1]+10+'px');
+                    })
+
+                    .on('mouseleave', function(d,i){
+                        d3.select('.custom-tooltip')
+                        .transition()
+                        .style('opacity',0)
+
+                    })
                     .merge(x)
                     .on("mouseenter", function(d){
                         
@@ -211,7 +235,7 @@ function draw(data, slideNumber) {
 
                     })
                     .transition().duration(2000)
-                    .attr('r', function(d){return d.reviews})
+                    .attr('r', function(d){return scaleRadius(d.reviews)})
                     .attr('cx',function(d){return scalePrice(d.price)+20})
                     .attr('cy',function(d){return scaleReviews(d.reviews)+180})
                     .style('fill','#7B90D2');
@@ -235,8 +259,6 @@ function draw(data, slideNumber) {
 //how to change the color of scale?
 
 //add tooltip
-
-//circle size cannot reflect the amounts of reviews
 
         
             break;
