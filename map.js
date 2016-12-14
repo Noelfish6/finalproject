@@ -199,17 +199,25 @@ function draw(data, slideNumber) {
                     x.exit().remove();
                     x.enter()
                     .append("circle").attr('class','case')
-                    .on('mouseenter', function(d,i){
-                       var tooltip = d3.select('.custom-tooltip');
+                    .merge(x)
+
+                    .on("mouseenter", function(d,i){
+                        
+                        var tooltip = d3.select('.custom-tooltip');
 
                         tooltip.select('.title').html(d.town);
                         tooltip.select('.value').html(d.price);
                         tooltip.transition().style('opacity', 1);
+
+                        d3.selectAll('.case')
+                            .style("opacity", function(e){
+                                return d.town == e.town ? 1 : 0.2;
+                            })
                     })
 
                     .on('mousemove', function(d,i){
 
-                        var xy = d3.mouse( d3.select('.container').node()); //finding the mouse in relation to container(0,0)
+                        var xy = d3.mouse( d3.select('.container').node());
                         console.log(xy);
                         
                         d3.select('.custom-tooltip')
@@ -217,24 +225,14 @@ function draw(data, slideNumber) {
                             .style('top', xy[1]+10+'px');
                     })
 
-                    .on('mouseleave', function(d,i){
+                    .on("mouseleave", function(d,i){
                         d3.select('.custom-tooltip')
                         .transition()
                         .style('opacity',0)
+                    })
 
-                    })
-                    .merge(x)
-                    .on("mouseenter", function(d){
-                        
-                        d3.selectAll('.case')
-                            .style("opacity", function(e){
-                                return d.town == e.town ? 1 : 0.2;
-                            })
-                    })
-                    .on("mouseleave", function(d){
-
-                    })
                     .transition().duration(2000)
+                    // .attr('r', 5)
                     .attr('r', function(d){return scaleRadius(d.reviews)})
                     .attr('cx',function(d){return scalePrice(d.price)+20})
                     .attr('cy',function(d){return scaleReviews(d.reviews)+180})
