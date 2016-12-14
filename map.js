@@ -96,10 +96,6 @@ d3.queue()
             .domain([minReviews, maxReviews])
             .range([height,0]);
 
-        scaleSize = d3.scaleSqrt()
-            .domain([minReviews, maxReviews])
-            .range([2,50]);
-
 
         updateSlide(1);
     });
@@ -164,18 +160,6 @@ function draw(data, slideNumber) {
                         }
                     });
 
-            // var axisX = d3.axisBottom()
-            //     .scale(scaleX)
-            //     .tickSize(-height);
-            // var axisY = d3.axisLeft()
-            //     .scale(scaleY)
-            //     .tickSize(-width);
-            // plot.append('g').attr('class','axis axis-x')
-            //     .attr('transform','translate(0,'+height+')')
-            //     .call(axisX);
-            // plot.append('g').attr('class','axis axis-y').call(axisY)
-            //     .attr('transform','translate(20,'+height+'-180)');
-            //     .style('opacity',0);
 
             break;
 
@@ -192,9 +176,6 @@ function draw(data, slideNumber) {
                 .attr('cx',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[0]})
                 .attr('cy',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[1]})
                 .transition().duration(1000)
-                // .attr("transform", function(d){
-                //     return "translate("+albersProjection([d.longitude, d.latitude])+")"; 
-                // })
                 .attr("r", function(d){ return d.reviews/18; })
                 .style('fill',function(d){
                         if (d.reviews < maxReviews/3) {
@@ -205,18 +186,7 @@ function draw(data, slideNumber) {
                             return scaleColor2("high");}
                 });
 
-        // var axisX = d3.axisBottom()
-        //         .scale(scaleX)
-        //         .tickSize(-height);
-        //     var axisY = d3.axisLeft()
-        //         .scale(scaleY)
-        //         .tickSize(-width);
-        //     plot.append('g').attr('class','axis axis-x')
-        //         .attr('transform','translate(0,'+height+')')
-        //         .call(axisX);
-        //     plot.append('g').attr('class','axis axis-y').call(axisY)
-        //         .attr('transform','translate(20,'+height+'-180)');
-        //         .style('opacity',0);
+
             break;
 
         case 3:
@@ -234,30 +204,39 @@ function draw(data, slideNumber) {
                             .style("opacity", function(e){
                                 return d.town == e.town ? 1 : 0.2;
                             })
-
                     })
                     .on("mouseleave", function(d){
 
                     })
                     .transition().duration(2000)
-                    .attr('r', 10)
+                    .attr('r', 3)
                     .attr('cx',function(d){return scalePrice(d.price)+20})
                     .attr('cy',function(d){return scaleReviews(d.reviews)+180})
                     .style('fill','#7B90D2');
 
             var axisX = d3.axisBottom()
-                .scale(scalePrice)
+                .scale(scaleX)
                 .tickSize(-height);
             var axisY = d3.axisLeft()
-                .scale(scaleReviews)
+                .scale(scaleY)
                 .tickSize(-width);
             plot.append('g').attr('class','axis axis-x')
-                // .attr('transform','translate(0,'+height+')')
-                .attr('trasnform','translate(200,0)')
+                .attr('transform','translate(20,'+height+180+')')
+                //.attr('trasnform','translate(200,0)')
                 .call(axisX);
             plot.append('g').attr('class','axis axis-y')
-                .attr('transform','translate(0,180)')
+                .attr('transform','translate(60,180)')
                 .call(axisY);
+
+//Problems:
+
+//how to change the color of scale?
+
+//add tooltip
+
+//circle size cannot reflect the amounts of reviews
+
+//how to delete the scale when scene is 1 or 2
         
             break;
     }
