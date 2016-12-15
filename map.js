@@ -49,7 +49,7 @@ var scaleReviews = d3.scaleLinear()
                      .range([height,10]);
 
 var scaleRadius = d3.scaleLinear()
-                    .range([0, 10])
+                    .range([3, 20])
 var maxPrice;
 
 var maxReviews;
@@ -58,9 +58,9 @@ var scaleX, scaleY, scaleSize;
 
 
 d3.queue()
-    .defer(d3.csv, 'day20_assets/boston_listings_cleaned.csv', parseData)
+    .defer(d3.csv, 'data/boston_listings_cleaned.csv', parseData)
     .await(function(err, data){
-        console.log(data[0]);
+        // console.log(data[0]);
         masterData = data;
 
         maxPrice = d3.max(data, function(d){return d.price});
@@ -95,7 +95,6 @@ d3.queue()
             .exponent(.5)
             .domain([minReviews, maxReviews])
             .range([height,0]);
-
 
         updateSlide(1);
     });
@@ -143,9 +142,6 @@ function draw(data, slideNumber) {
                     .merge(x)
                     .on("mouseenter", null)
                     .on("mouseleave", null)
-                    // .attr("transform", function(d){
-                    //     return "translate("+albersProjection([d.longitude, d.latitude])+")"; 
-                    // })
                     .attr('cx',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[0]})
                     .attr('cy',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[1]})
                     .transition().duration(1000)
@@ -206,7 +202,7 @@ function draw(data, slideNumber) {
                         
                         var tooltip = d3.select('.custom-tooltip');
 
-                        tooltip.select('.title').html(d.town);
+                        tooltip.select('.title').html(d.city);
                         tooltip.select('.value').html(d.price);
                         tooltip.transition().style('opacity', 1);
 
@@ -233,7 +229,7 @@ function draw(data, slideNumber) {
                     })
 
                     .transition().duration(2000)
-                    // .attr('r', 5)
+                    // .attr('r', 4)
                     .attr('r', function(d){return scaleRadius(d.reviews)})
                     .attr('cx',function(d){return scalePrice(d.price)+20})
                     .attr('cy',function(d){return scaleReviews(d.reviews)+180})
@@ -247,17 +243,12 @@ function draw(data, slideNumber) {
                 .tickSize(-width);
             plot.append('g').attr('class','axis axis-x')
                 .attr('transform','translate(60,'+(height+180)+')')
-                //.attr('trasnform','translate(200,0)')
                 .call(axisX);
             plot.append('g').attr('class','axis axis-y')
                 .attr('transform','translate(60,180)')
                 .call(axisY);
 
-//Problems:
-
-//how to change the color of scale?
-
-//add tooltip
+//Problems:add tooltip
 
         
             break;

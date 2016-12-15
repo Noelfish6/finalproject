@@ -10,29 +10,21 @@ var plot = d3.select('#plot')
 	.append('g').attr('class','canvas')
 	.attr('transform','translate('+m.l+','+m.t+')');
 
-// var ball = plot.append('circle')
-// 	.attr('cx',0)
-// 	.attr('cy',height/2)
-// 	.attr('r',20)
-// 	.style('fill','black');
-
-
 //Create scrollController
-//Step 1: create a global scroll controller
+//create a global scroll controller
 var scrollController = new ScrollMagic.Controller({
 		globalSceneOptions:{
 			triggerHook:'onLeave'
 		}
 	});
 
-//Step2: create scenes
+//create scenes
 var scene1 = new ScrollMagic.Scene({
-		duration:document.getElementById('scene-1').clientHeight, //controlled by height of the #scene-1 <section>, as specified in CSS
+		duration:document.getElementById('scene-1').clientHeight,
 		triggerElement:'#scene-1',
-		reverse:true //should the scene reverse, scrolling up?
+		reverse:true
 	})
 	.on('enter',function(){
-		//what happens when we 'enter' the scene i.e. #scene-1 reaches the top of the screen
 		d3.select('#plot').transition();
 		draw("newData");
 	})
@@ -42,7 +34,7 @@ var scene1 = new ScrollMagic.Scene({
 	.addTo(scrollController);
 
 var scene2 = new ScrollMagic.Scene({
-		duration:document.getElementById('scene-2').clientHeight, //controlled by height of the #scene-1 <section>, as specified in CSS
+		duration:document.getElementById('scene-2').clientHeight,
 		triggerElement:'#scene-2',
 		reverse:true //should the scene reverse, scrolling up?
 	})
@@ -59,9 +51,9 @@ var scene2 = new ScrollMagic.Scene({
 	.addTo(scrollController);
 
 var scene3 = new ScrollMagic.Scene({
-		duration:document.getElementById('scene-3').clientHeight, //controlled by height of the #scene-1 <section>, as specified in CSS
+		duration:document.getElementById('scene-3').clientHeight,
 		triggerElement:'#scene-3',
-		reverse:true //should the scene reverse, scrolling up?
+		reverse:true
 	})
 	.on('start',function(e){
 		if (e.scrollDirection == "REVERSE") {
@@ -71,24 +63,8 @@ var scene3 = new ScrollMagic.Scene({
 			d3.select('#plot').transition();
 			updateSlide(3);
 		}
+
 	})
 	.addTo(scrollController);
-
-
-// var scene4 = new ScrollMagic.Scene({
-// 		duration:document.getElementById('scene-4').clientHeight, //controlled by height of the #scene-1 <section>, as specified in CSS
-// 		triggerElement:'#scene-4',
-// 		reverse:true //should the scene reverse, scrolling up?
-// 	})
-// 	// .on('enter',function(){
-// 	// 	console.log('Enter Scene 4');
-// 	// })
-// 	.on('progress',function(e){
-// 		// console.log('Scene 4 progress ' + e.progress);
-// 		//e.progress = 0 at the start of scene; 1 at the end of the scene
-// 		ball.attr('cx',e.progress*width);
-// 		updateSlide(4);
-// 	})
-// 	.addTo(scrollController);
 
 
