@@ -70,4 +70,22 @@ body .viz-container{
 			margin-left: 70%;
 		}
 
+.axis line{
+	stroke:#FFFFFF;
+}
+
+.axis line{
+	stroke-width:1px;
+}
+
+.axis .domain{
+	stroke: #FFFFFF;
+}
+
+.axis .domain{
+	stroke-width:2px;
+}
+
+
+
 

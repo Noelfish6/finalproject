@@ -175,9 +175,10 @@ function draw(data, slideNumber) {
                 .merge(x)
                 .on("mouseenter", null)
                 .on("mouseleave", null)
+                .transition().duration(1000)
                 .attr('cx',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[0]})
                 .attr('cy',function(d){var location=albersProjection([d.longitude, d.latitude]);return location[1]})
-                .transition().duration(1000)
+                
                 .attr("r", function(d){ return d.reviews/18; })
                 .style('fill',function(d){
                         if (d.reviews < maxReviews/3) {
