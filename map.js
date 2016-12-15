@@ -217,7 +217,7 @@ function draw(data, slideNumber) {
 
                     .on('mousemove', function(d,i){
 
-                        var xy = d3.mouse( d3.select('.container').node());
+                        var xy = d3.mouse( d3.select('.viz-container').node());
                         console.log(xy);
                         
                         d3.select('.custom-tooltip')
