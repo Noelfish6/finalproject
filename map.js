@@ -203,7 +203,8 @@ function draw(data, slideNumber) {
                         var tooltip = d3.select('.custom-tooltip');
 
                         tooltip.select('.title').html(d.city);
-                        tooltip.select('.value').html(d.price);
+                        console.log(d.city);
+                        // tooltip.select('.value').html(d.price);
                         tooltip.transition().style('opacity', 1);
 
                         d3.selectAll('.case')
@@ -214,7 +215,7 @@ function draw(data, slideNumber) {
 
                     .on('mousemove', function(d,i){
 
-                        var xy = d3.mouse( d3.select('.viz-container').node());
+                        var xy = d3.mouse( d3.select('.animation-timeline').node());
                         console.log(xy);
                         
                         d3.select('.custom-tooltip')

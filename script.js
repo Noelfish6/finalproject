@@ -36,7 +36,7 @@ var scene1 = new ScrollMagic.Scene({
 var scene2 = new ScrollMagic.Scene({
 		duration:document.getElementById('scene-2').clientHeight,
 		triggerElement:'#scene-2',
-		reverse:true //should the scene reverse, scrolling up?
+		reverse:true
 	})
 	.addIndicators()
 	.on('start',function(e){
