@@ -38,7 +38,7 @@ var scene2 = new ScrollMagic.Scene({
 		triggerElement:'#scene-2',
 		reverse:true
 	})
-	.addIndicators()
+	// .addIndicators()
 	.on('start',function(e){
 		if (e.scrollDirection == "REVERSE") {
 			d3.select('#plot').transition();
