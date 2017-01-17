@@ -205,27 +205,29 @@ function draw(data, slideNumber) {
                         tooltip.select('.title').html(d.city);
                         console.log(d.city);
                         // tooltip.select('.value').html(d.price);
-                        tooltip.transition().style('opacity', 1);
+                        tooltip.style('opacity', 1);
 
                         d3.selectAll('.case')
                             .style("opacity", function(e){
                                 return d.town == e.town ? 1 : 0.2;
                             })
+
                     })
 
                     .on('mousemove', function(d,i){
 
                         var xy = d3.mouse( d3.select('.animation-timeline').node());
                         console.log(xy);
+                        screenheight=document.getElementById('scene-1').clientHeight+document.getElementById('scene-2').clientHeight;
                         
                         d3.select('.custom-tooltip')
                             .style('left', xy[0]+10+'px')
-                            .style('top', xy[1]+10+'px');
+                            .style('top', (xy[1]-screenheight-580*3+100)+'px');
                     })
 
                     .on("mouseleave", function(d,i){
                         d3.select('.custom-tooltip')
-                        .transition()
+                        
                         .style('opacity',0)
                     })
 

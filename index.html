@@ -8,13 +8,18 @@
     	<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     	<link href="style.css" rel="stylesheet"/>
+    	<link href="global.css" rel="stylesheet"/>
     	<script src="data/ma_towns.json"></script>
 	</head>
 	<body>
 		<div class="viz-container">
-
+<div class="custom-tooltip">
+					<p class="title"></p>
+					<p class="value"></p>
+				</div>
 			<div class="canvas" id="plot">
 			</div>
+			
 
 		</div><!--this element will stay fixed-->
 		
@@ -46,10 +51,7 @@
 				</div>
 			</section>
 			<section class="scene"></section>
-				<div class="custom-tooltip">
-					<p class="title"></p>
-					<p class="value"></p>
-				</div>
+				
 		</div>
 	</body>
 

@@ -17,11 +17,7 @@
     top:0px;
     left:0px;
 /*    visibility:hidden;*/
-/*    opacity:0;*/
+    opacity:0;
     z-index: 100;
 }
 
-    .custom-tooltip .title{
-        font-size:5em;
-        font-weight:bold;
-    }
