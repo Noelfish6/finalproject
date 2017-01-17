@@ -216,13 +216,13 @@ function draw(data, slideNumber) {
 
                     .on('mousemove', function(d,i){
 
-                        var xy = d3.mouse( d3.select('.animation-timeline').node());
+                        var xy = d3.mouse( svg.node());
                         console.log(xy);
                         screenheight=document.getElementById('scene-1').clientHeight+document.getElementById('scene-2').clientHeight;
-                        
+                        console.log(screenheight);
                         d3.select('.custom-tooltip')
                             .style('left', xy[0]+10+'px')
-                            .style('top', (xy[1]-screenheight-580*3+100)+'px');
+                            .style('top', (xy[1]+10)+'px');
                     })
 
                     .on("mouseleave", function(d,i){
