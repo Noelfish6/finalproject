@@ -6,13 +6,18 @@ html,body,h2,h3,h4,div,a,ul,li{
 .title {
 	width: 100%;
 	font-weight:bolder;
-	color:white;
+	color:black;
 	position: fixed;
 	padding-left: 50px;
 }
 
 .title p {
 	font-size:2em;
+	color: black;
+}
+.title h1{
+	font-size: 6em;
+	color: white;
 }
 .container {
 	padding-top: 10px,

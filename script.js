@@ -2,7 +2,7 @@ var m = {t:250,r:50,b:250,l:50},
 	width = document.getElementById('plot').clientWidth - m.l - m.r,
 	height = document.getElementById('plot').clientHeight - m.t - m.b;
 
-
+console.log(height)
 var plot = d3.select('#plot')
 	.append('svg')
 	.attr('width',width+m.l+m.r)
